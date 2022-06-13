@@ -3,16 +3,14 @@ import { PurchaseSchema } from "./PurchaseSchema";
 
 
 @Entity()
-
-
 export class UserSchema extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
+    @Column({unique:true})
     username: string
     
-    @Column()
+    @Column({nullable: false})
     password: string
 
     @Column()
