@@ -16,7 +16,5 @@ app.use(express.urlencoded({extended: false}))
 
 app.use(userRoutes)
 app.use(ProductRoutes)
-// app.use("/api/v1/products",require('./routes/products.routes'))
-// app.use("/api/v1/users",require('./routes/users.routes'))
 
 module.exports =  app
