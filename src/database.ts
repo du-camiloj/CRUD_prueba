@@ -6,7 +6,7 @@ import { PurchaseSchema } from "./entity/PurchaseSchema";
 
 export const connection = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "postgres_ss",
     port: 5432,
     username: 'postgres',
     password: 'admin1234',
