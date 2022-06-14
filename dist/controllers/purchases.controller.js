@@ -16,6 +16,9 @@ const PurchaseSchema_1 = require("../entity/PurchaseSchema");
 function createBuy(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            if (!req.body.userId || !req.body.productId || !req.body.quantityBuy) {
+                return res.status(400).json({ Message: "Envie id de usario y producto y la cantidad a comprar" });
+            }
             const { userId, productId, quantityBuy } = req.body;
             const user = yield UserSchema_1.UserSchema.findOneBy({ id: userId });
             const products = yield ProductSchema_1.ProductSchema.findOneBy({ id: productId });
@@ -34,7 +37,6 @@ function createBuy(req, res) {
             purchase.purchaseDate = new Date();
             yield purchase.save();
             ProductSchema_1.ProductSchema.update({ id: productId }, { quantity: (products.quantity - quantityBuy) });
-            console.log("estoy aquii");
             return res.status(200).json(purchase);
         }
         catch (err) {

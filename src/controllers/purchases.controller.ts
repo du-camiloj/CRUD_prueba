@@ -5,7 +5,9 @@ import { PurchaseSchema } from "../entity/PurchaseSchema";
 
 export async function createBuy(req: Request, res: Response){
     try{
-        
+        if (!req.body.userId || !req.body.productId || !req.body.quantityBuy) {
+            return res.status(400).json({Message: "Envie id de usario y producto y la cantidad a comprar"})
+        }
         const {userId, productId, quantityBuy} = req.body;
         
         const user = await UserSchema.findOneBy({id: userId})
@@ -24,9 +26,6 @@ export async function createBuy(req: Request, res: Response){
         await purchase.save()
     
         ProductSchema.update({id: productId}, {quantity: (products.quantity-quantityBuy)})
-    
-    
-        console.log("estoy aquii")
     
         return res.status(200).json(purchase)
         

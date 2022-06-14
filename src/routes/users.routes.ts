@@ -7,7 +7,7 @@ router.post('/users', createUser)
 
 router.get('/users', getAllUserss)
 
-router.put('/users', updateUser)
+router.put('/users/:id', updateUser)
 
 router.delete('/users/:id', deleteUser)
 

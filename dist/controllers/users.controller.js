@@ -51,7 +51,7 @@ function login(req, res) {
             }
             const isMatch = yield bcrypt_1.default.compare(req.body.password, user.password);
             if (isMatch) {
-                return res.status(200).json({ token: createToken(user) });
+                return res.status(200).json({ token: yield createToken(user) });
             }
             return res.status(400).json({ Message: "La contraseña es incorrecta" });
         }
